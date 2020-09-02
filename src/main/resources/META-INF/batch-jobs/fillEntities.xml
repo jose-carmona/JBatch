@@ -1,0 +1,13 @@
+<job id="fillEntitiesJob" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+     version="1.0">
+    <step id="rellenarEntitiesAleatorias">
+        <batchlet ref="fillEntitiesBatchlet">
+            <properties>
+                <property name="maxAmount" value="#{jobParameters['maxAmount']}?:100;"/>
+                <property name="maxDetails" value="#{jobParameters['maxDetails']}?:5;"/>
+                <property name="nmEntities" value="#{jobParameters['nmEntities']}?:100;"/>
+                <property name="partitions" value="#{jobParameters['partitions']}?:4;"/>
+            </properties>
+        </batchlet>
+    </step>
+</job>

@@ -1,0 +1,30 @@
+<job id="computeEntitiesSumJob" xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+     version="1.0">
+    <step id="computeSumJob">
+        <chunk item-count="10">
+            <reader ref="entityReader">
+                <properties>
+                    <property name="partition" value="#{partitionPlan['partition']}"  />
+                </properties>                
+            </reader> 
+            <processor ref="computeSumProcessor"/>
+            <writer ref="entityWriter"/>
+        </chunk>
+        <partition>
+            <plan partitions="4">
+                <properties partition="0">
+                    <property name="partition" value="0"/>
+                </properties>
+                <properties partition="1">
+                    <property name="partition" value="1"/>
+                </properties>
+                <properties partition="2">
+                    <property name="partition" value="2"/>
+                </properties>
+                <properties partition="3">
+                    <property name="partition" value="3"/>
+                </properties>
+            </plan>
+        </partition>
+    </step>
+</job>
